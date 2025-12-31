@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aegis - Extreme-Climate Battery Enclosure System</title>
+    <!-- Tailwind CSS v3 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0066cc',
+                        secondary: '#00ccff',
+                        accent: '#6600ff',
+                        dark: '#0a0e17',
+                        light: '#f0f8ff'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-gradient {
+                @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+            }
+            .bg-glass {
+                @apply bg-white/10 backdrop-blur-md border border-white/20;
+            }
+            .section-padding {
+                @apply py-20 md:py-32;
+            }
+            .card-hover {
+                @apply transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-1;
+            }
+            .tech-grid {
+                background-size: 20px 20px;
+                background-image: 
+                    linear-gradient(to right, rgba(0, 102, 204, 0.1) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(0, 102, 204, 0.1) 1px, transparent 1px);
+            }
+        }
+    </style>
+</head>
+<body class="bg-dark text-light font-sans overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-glass">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold text-gradient">Aegis</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#brand-story" class="hover:text-primary transition-colors">Our Story</a>
+                    <a href="#overview" class="hover:text-primary transition-colors">Overview</a>
+                    <a href="#technology" class="hover:text-primary transition-colors">Technology</a>
+                    <a href="#validation" class="hover:text-primary transition-colors">Validation</a>
+                    <a href="#business" class="hover:text-primary transition-colors">Business Model</a>
+                    <a href="#team" class="hover:text-primary transition-colors">Team</a>
+                    <a href="#roadmap" class="hover:text-primary transition-colors">Roadmap</a>
+                </div>
+                <button class="md:hidden text-2xl" id="menu-toggle">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-glass absolute w-full">
+            <div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
+                <a href="#brand-story" class="hover:text-primary transition-colors">Our Story</a>
+                <a href="#overview" class="hover:text-primary transition-colors">Overview</a>
+                <a href="#technology" class="hover:text-primary transition-colors">Technology</a>
+                <a href="#validation" class="hover:text-primary transition-colors">Validation</a>
+                <a href="#business" class="hover:text-primary transition-colors">Business Model</a>
+                <a href="#team" class="hover:text-primary transition-colors">Team</a>
+                <a href="#roadmap" class="hover:text-primary transition-colors">Roadmap</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex items-center justify-center overflow-hidden tech-grid">
+        <div class="absolute inset-0 bg-gradient-to-b from-primary/20 to-dark"></div>
+        <div class="absolute top-0 left-0 w-full h-full">
+            <div id="particles-js" class="w-full h-full"></div>
+        </div>
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
+                <span class="text-gradient">Extreme-Climate Battery</span> Enclosure Protection
+            </h1>
+            <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto">
+                Built for extremes—desert days, snowy nights, and everything in between.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="#overview" class="bg-primary hover:bg-primary/80 text-white font-bold py-3 px-8 rounded-full transition-colors">
+                    Explore Aegis
+                </a>
+                <a href="#technology" class="bg-transparent border border-primary hover:bg-primary/10 text-white font-bold py-3 px-8 rounded-full transition-colors">
+                    Technical Details
+                </a>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#overview" class="text-3xl text-primary">
+                <i class="fa fa-chevron-down"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Brand Story Section -->
+    <section id="brand-story" class="section-padding relative bg-gradient-to-b from-dark to-dark/95">
+        <div class="absolute inset-0 tech-grid opacity-30"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Extreme-Climate Energy Storage</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Story -->
+                <div class="bg-glass rounded-xl p-8 card-hover relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-16 h-16 bg-primary/20 rounded-br-3xl flex items-center justify-center">
+                        <span class="text-3xl font-bold text-primary">1</span>
+                    </div>
+                    <div class="pt-8">
+                        <h3 class="text-2xl font-bold mb-6 text-gradient">Our Mission</h3>
+                        <p class="mb-6">
+                            Aegis exists to make battery energy storage dependable in places where weather is the biggest variable. We create a stable enclosure environment so projects can run consistently through heat, cold, wind, and rapid day–night swings.
+                        </p>
+                        <p>
+                            By keeping batteries in a healthier operating window, Aegis helps reduce unplanned downtime, slow degradation, and improve real-world system reliability—so extreme sites become practical, long-term deployments.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Model -->
+                <div class="bg-glass rounded-xl p-8 card-hover relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-16 h-16 bg-primary/20 rounded-br-3xl flex items-center justify-center">
+                        <span class="text-3xl font-bold text-primary">2</span>
+                    </div>
+                    <div class="pt-8">
+                        <h3 class="text-2xl font-bold mb-6 text-gradient">Our Innovation</h3>
+                        <div class="relative w-full h-48 mb-6 overflow-hidden rounded-lg">
+                            <img src="https://picsum.photos/id/119/600/400" alt="Aegis Model" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-4">
+                                <span class="bg-primary/80 text-white px-3 py-1 rounded-full text-sm">Microclimate Control</span>
+                            </div>
+                        </div>
+                        <p>
+                            Aegis isn’t just insulation and airflow. The core is a predictive ADRC control layer that estimates disturbances in real time—sun load, wind chill, ambient swings, lid opening, and internal heat changes—and corrects before the enclosure drifts out of range.
+                        </p>
+                        <p>
+                            That control stack (observer design, tuning, and condensation-aware constraints) is the hard part to replicate. It turns extreme sites into repeatable operating conditions, which translates directly into less downtime and longer battery life.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Brand -->
+                <div class="bg-glass rounded-xl p-8 card-hover relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-16 h-16 bg-primary/20 rounded-br-3xl flex items-center justify-center">
+                        <span class="text-3xl font-bold text-primary">3</span>
+                    </div>
+                    <div class="pt-8">
+                        <h3 class="text-2xl font-bold mb-6 text-gradient">Our Values</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <div class="bg-primary/20 p-2 rounded-full mr-3 mt-1">
+                                    <i class="fa fa-leaf text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Outcome-Driven</h4>
+                                    <p class="text-sm">We focus on what operators pay for: stable performance, fewer incidents, and less downtime.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="bg-primary/20 p-2 rounded-full mr-3 mt-1">
+                                    <i class="fa fa-cogs text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Built on Control, Not Hype</h4>
+                                    <p class="text-sm">ADRC-based prediction and disturbance rejection is our edge, and we validate it with data.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="bg-primary/20 p-2 rounded-full mr-3 mt-1">
+                                    <i class="fa fa-globe text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Designed for Real Sites</h4>
+                                    <p class="text-sm">Day–night swings, wind, dust, and sudden weather changes are treated as defaults, not exceptions.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="bg-primary/20 p-2 rounded-full mr-3 mt-1">
+                                    <i class="fa fa-shield text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Economic by Design</h4>
+                                    <p class="text-sm">Reliability improvements translate into lower OPEX and longer asset life over the project cycle.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview" class="section-padding relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Product Overview</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-6 text-gradient">Advanced Microclimate Solution</h3>
+                    <p class="text-lg mb-6">
+                        Aegis creates a stable enclosure microclimate for battery energy storage in extreme and fast-changing conditions. Its core is a predictive ADRC control stack that estimates disturbances in real time and corrects before drift becomes downtime—helping projects maintain reliable operation and extend battery service life.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-primary/20 p-3 rounded-full mr-4">
+                                <i class="fa fa-bolt text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl">Predictive ADRC Dual-Objective Control</h4>
+                                <p>Aegis runs a predictive ADRC control stack to manage two targets at once—temperature stability and condensation-risk (humidity/dew-point margin)—so the enclosure stays in-range across desert heat, snowy nights, wind chill, and rapid day–night swings.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-primary/20 p-3 rounded-full mr-4">
+                                <i class="fa fa-shield text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl">Waste-Heat Recovery</h4>
+                                <p>Integrated thermoelectric harvesting reclaims usable power from waste-heat and thermal gradients, supporting auxiliary loads (sensing/monitoring/control) and improving overall system resilience.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-primary/20 p-3 rounded-full mr-4">
+                                <i class="fa fa-expand text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl">Longer Battery Life, Higher Storage Efficiency</h4>
+                                <p>By keeping batteries closer to an optimal operating window and reducing temperature–humidity stress, Aegis helps slow degradation and stabilize performance. More consistent cell conditions also reduce resistive losses and avoid protective derating, improving real-world usable energy and overall storage efficiency in harsh deployments.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2 flex justify-center">
+                    <div class="relative w-full max-w-md animate-float">
+                        <div class="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-3xl blur-3xl opacity-30 animate-pulse-slow"></div>
+                        <img src="https://picsum.photos/id/119/600/600" alt="Aegis Battery Enclosure" class="relative z-10 rounded-3xl shadow-2xl w-full">
+                    </div>
+                </div>
+            </div>
+            
+            <p class="text-center max-w-3xl mx-auto text-lg mb-12">Key performance metrics for Aegis under extreme ambient swings.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20">
+                <div class="bg-glass rounded-xl p-8 card-hover">
+                    <div class="text-4xl text-primary mb-4">
+                        <i class="fa fa-tachometer"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Environmental Stability</h3>
+                    <p>±2°C temperature stability across −40°C to +60°C ambient conditions, with humidity held to ≤ ±5%RH around target and a dew-point safety margin of ≥ 3°C.</p>
+                </div>
+                <div class="bg-glass rounded-xl p-8 card-hover">
+                    <div class="text-4xl text-primary mb-4">
+                        <i class="fa fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Battery Impact</h3>
+                    <p>By reducing temperature–humidity stress, Aegis targets +20% longer battery service life and up to +5% higher usable energy through less derating in harsh conditions.</p>
+                </div>
+                <div class="bg-glass rounded-xl p-8 card-hover">
+                    <div class="text-4xl text-primary mb-4">
+                        <i class="fa fa-cogs"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Competitive Benchmark</h3>
+                    <p>By using same alarm standards, Aegis delivers 30% fewer alarm/fault events than market alternatives, supports 1.5× longer stable continuous operation before intervention, and returns to the target range in 3m 30s (vs 12 min).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="technology" class="section-padding bg-gradient-to-b from-dark to-dark/95 relative">
+        <div class="absolute inset-0 tech-grid opacity-30"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Technical Specifications</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+                <p class="mt-6 max-w-3xl mx-auto text-lg">
+                    Our innovative three-layer architecture provides comprehensive protection in extreme environments
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <div class="space-y-8">
+                        <div class="bg-glass rounded-xl p-8">
+                            <h3 class="text-2xl font-bold mb-4 text-gradient">Three-Layer Architecture</h3>
+                            <p class="mb-6">
+                                Aegis's innovative approach consists of three integrated layers working together to create a stable microclimate in extreme environments.
+                            </p>
+                            
+                            <!-- Three-Layer Diagram -->
+                            <div class="relative w-full h-64 mb-6 bg-dark/50 rounded-lg overflow-hidden">
+                                <!-- Layer 3: Waste Heat Recovery -->
+                                <div class="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-accent/40 to-transparent flex items-center justify-center">
+                                    <div class="text-center">
+                                        <div class="text-3xl text-accent mb-2">
+                                            <i class="fa fa-bolt"></i>
+                                        </div>
+                                        <h4 class="font-bold text-white">Layer 3</h4>
+                                        <p class="text-sm text-white/80">Waste Heat Recovery</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Layer 2: Microclimate Control -->
+                                <div class="absolute bottom-1/3 left-0 right-0 h-1/3 bg-gradient-to-t from-secondary/40 to-transparent flex items-center justify-center">
+                                    <div class="text-center">
+                                        <div class="text-3xl text-secondary mb-2">
+                                            <i class="fa fa-sliders"></i>
+                                        </div>
+                                        <h4 class="font-bold text-white">Layer 2</h4>
+                                        <p class="text-sm text-white/80">Dew Point & Temperature Control</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Layer 1: Thermal Insulation -->
+                                <div class="absolute bottom-2/3 left-0 right-0 h-1/3 bg-gradient-to-t from-primary/40 to-transparent flex items-center justify-center">
+                                    <div class="text-center">
+                                        <div class="text-3xl text-primary mb-2">
+                                            <i class="fa fa-shield"></i>
+                                        </div>
+                                        <h4 class="font-bold text-white">Layer 1</h4>
+                                        <p class="text-sm text-white/80">Thermal Insulation & Structure</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Labels -->
+                                <div class="absolute top-2 left-2 bg-dark/70 px-3 py-1 rounded-full text-xs">
+                                    Battery & Electronics
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div class="flex justify-between mb-1">
+                                    <span>Thermal Resistance</span>
+                                    <span class="text-primary">98%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="bg-gradient-to-r from-primary to-secondary h-2 rounded-full" style="width: 98%"></div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span>Moisture Barrier</span>
+                                        <span class="text-primary">92%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-700 rounded-full h-2">
+                                        <div class="bg-gradient-to-r from-primary to-secondary h-2 rounded-full" style="width: 92%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span>ADRC Control</span>
+                                        <span class="text-primary">95%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-700 rounded-full h-2">
+                                        <div class="bg-gradient-to-r from-primary to-secondary h-2 rounded-full" style="width: 95%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-glass rounded-xl p-8">
+                            <h3 class="text-2xl font-bold mb-4 text-gradient">Technology Components</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fa fa-thermometer-half text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold">Dew-Point Margin</h4>
+                                        <p class="text-sm text-gray-400">Condensation risk control</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fa fa-sliders text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold">Predictive ADRC</h4>
+                                        <p class="text-sm text-gray-400">Dual-objective control</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fa fa-wind text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold">TEC + Airflow</h4>
+                                        <p class="text-sm text-gray-400">Fast thermal response</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fa fa-bolt text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold">TEG Recovery</h4>
+                                        <p class="text-sm text-gray-400">Auxiliary power support</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Visual representation of the three-layer protection -->
+                            <div class="mt-8 p-4 bg-dark/50 rounded-lg">
+                              
+                                <h4 class="font-bold mb-4 text-center">Extreme Environment Protection</h4>
+                                <!-- 核心列表区域 -->
+                                <ul class="space-y-3">
+                                <!-- 外层：外部极端环境 -->
+                                    <li class="p-3 rounded-lg bg-red-500/10 border-l-4 border-red-500">
+                                         <span class="font-semibold">External Environment:</span>
+                                         <span class="block text-sm text-gray-300 mt-1">-40°C to +60°C (Extreme Temperature Range)</span>
+                                     </li>
+
+                                <!-- 第一层：隔热层 -->
+                                     <li class="p-3 rounded-lg bg-primary/10 border-l-4 border-primary">
+                                         <span class="font-semibold">1st Layer - Thermal Barrier:</span>
+                                         <span class="block text-sm text-gray-300 mt-1">Insulates against external temperature extremes</span>
+                                     </li>
+
+                               <!-- 第二层：微气候控制层 -->
+                                    <li class="p-3 rounded-lg bg-secondary/10 border-l-4 border-secondary">
+                                        <span class="font-semibold">2nd Layer - Controlled Environment:</span>
+                                        <span class="block text-sm text-gray-300 mt-1">Regulates internal microclimate</span>
+                                    </li>
+
+                              <!-- 最内层：电池舱 -->
+                                    <li class="p-3 rounded-lg bg-accent/10 border-l-4 border-accent">
+                                         <span class="font-semibold">3rd Layer - Battery Compartment:</span>
+                                         <span class="block text-sm text-gray-300 mt-1">Stable operating temperature: +15°C to +25°C</span>
+                                   </li>
+                             </ul>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="bg-glass rounded-xl p-8 mb-8">
+                        <h3 class="text-2xl font-bold mb-6 text-gradient">Performance Benchmarks</h3>
+                        <div class="h-80">
+                            <canvas id="performanceChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-glass rounded-xl p-8">
+                        <h3 class="text-2xl font-bold mb-6 text-gradient">Technical Specifications</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between border-b border-gray-700 pb-2">
+                                <span>Operating Ambient Range</span>
+                                <span class="font-mono">-40°C to +60°C</span>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-700 pb-2">
+                                <span>Temperature Stability</span>
+                                <span class="font-mono">±2°C</span>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-700 pb-2">
+                                <span>Humidity Stability</span>
+                                <span class="font-mono">≤ ±5%RH</span>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-700 pb-2">
+                                <span>Condensation Safety Margin</span>
+                                <span class="font-mono">≥3°C</span>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-700 pb-2">
+                                <span>Protection Class</span>
+                                <span class="font-mono">IP66 / NEMA 4X</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Model Section -->
+    <section id="business" class="section-padding relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Business Model</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+                <p class="mt-6 max-w-3xl mx-auto text-lg">
+                    A sustainable approach that delivers value to customers while ensuring long-term growth
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2">
+                    <div class="bg-glass rounded-xl p-8 h-full">
+                        <h3 class="text-2xl font-bold mb-6 text-gradient">Revenue Streams</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-dark/50 rounded-lg p-6">
+                                <div class="text-3xl text-primary mb-4">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </div>
+                                <h4 class="text-xl font-bold mb-2">System Deployment</h4>
+                                <p>Project-based hardware, installation, and commissioning for extreme-climate sites.</p>
+                                <div class="mt-4 text-primary font-bold">65% of Revenue</div>
+                            </div>
+                            <div class="bg-dark/50 rounded-lg p-6">
+                                <div class="text-3xl text-primary mb-4">
+                                    <i class="fa fa-cloud"></i>
+                                </div>
+                                <h4 class="text-xl font-bold mb-2">Service & Warranty</h4>
+                                <p>Extended warranty, preventative maintenance, and on-site support for long-run reliability.</p>
+                                <div class="mt-4 text-primary font-bold">20% of Revenue</div>
+                            </div>
+                            <div class="bg-dark/50 rounded-lg p-6">
+                                <div class="text-3xl text-primary mb-4">
+                                    <i class="fa fa-cogs"></i>
+                                </div>
+                                <h4 class="text-xl font-bold mb-2">OEM Partnerships</h4>
+                                <p>Integration and licensing with enclosure builders and EPCs to scale deployments.</p>
+                                <div class="mt-4 text-primary font-bold">10% of Revenue</div>
+                            </div>
+                            <div class="bg-dark/50 rounded-lg p-6">
+                                <div class="text-3xl text-primary mb-4">
+                                    <i class="fa fa-handshake-o"></i>
+                                </div>
+                                <h4 class="text-xl font-bold mb-2">Monitoring Add-Ons</h4>
+                                <p>Optional fleet monitoring, alerts, and control tuning packages.</p>
+                                <div class="mt-4 text-primary font-bold">5% of Revenue</div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="text-xl font-bold mb-4">Market Analysis</h4>
+                            <div class="h-64">
+                                <canvas id="marketChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="bg-glass rounded-xl p-8 mb-8">
+                        <h3 class="text-2xl font-bold mb-6 text-gradient">Target Markets</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 rounded-full bg-primary mr-3"></div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between mb-1">
+                                        <span>Utility Storage</span>
+                                        <span>40%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-700 rounded-full h-2">
+                                        <div class="bg-primary h-2 rounded-full" style="width: 40%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 rounded-full bg-secondary mr-3"></div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between mb-1">
+                                        <span>Remote Microgrids</span>
+                                        <span>25%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-700 rounded-full h-2">
+                                        <div class="bg-secondary h-2 rounded-full" style="width: 25%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 rounded-full bg-accent mr-3"></div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between mb-1">
+                                        <span>Industrial Mining</span>
+                                        <span>20%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-700 rounded-full h-2">
+                                        <div class="bg-accent h-2 rounded-full" style="width: 20%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 rounded-full bg-green-500 mr-3"></div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between mb-1">
+                                        <span>Coastal Sites</span>
+                                        <span>15%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-700 rounded-full h-2">
+                                        <div class="bg-green-500 h-2 rounded-full" style="width: 15%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-glass rounded-xl p-8">
+                        <h3 class="text-2xl font-bold mb-6 text-gradient">Pricing Strategy</h3>
+                        <div class="space-y-6">
+                            <div class="bg-dark/50 rounded-lg p-6">
+                                <h4 class="text-xl font-bold mb-2">Pilot</h4>
+                                <p>One-site trial with setup and performance reporting.</p>
+                            </div>
+                            
+                            <div class="bg-dark/50 rounded-lg p-6">
+                                <h4 class="text-xl font-bold mb-2">Deployment</h4>
+                                <p>Standard site rollout with installation, commissioning, and warranty options.</p>
+                            </div>
+                            
+                            <div class="bg-dark/50 rounded-lg p-6">
+                                <h4 class="text-xl font-bold mb-2">Fleet / Large Projects</h4>
+                                <p>Multi-site rollout with tailored configurations and dedicated support.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Team Section -->
+    <section id="team" class="section-padding bg-gradient-to-b from-dark/95 to-dark relative">
+        <div class="absolute inset-0 tech-grid opacity-30"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Our Team</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+                <p class="mt-6 max-w-3xl mx-auto text-lg">
+                    A diverse group of experts dedicated to pushing the boundaries of technology
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-glass rounded-xl overflow-hidden card-hover">
+                    <div class="relative">
+                        <img src="https://picsum.photos/id/1005/400/400" alt="CEO" class="w-full h-64 object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark to-transparent p-4">
+                            <h3 class="text-xl font-bold">Member 1</h3>
+                            <p class="text-primary">Founder (Engineering) & Controls Lead</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="mb-4">
+                            Leads system architecture and predictive ADRC dual-objective control (temperature + humidity/condensation risk), including sensing, tuning, and field validation.
+                        </p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                                <i class="fa fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-glass rounded-xl overflow-hidden card-hover">
+                    <div class="relative">
+                        <img src="https://picsum.photos/id/1012/400/400" alt="CTO" class="w-full h-64 object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark to-transparent p-4">
+                            <h3 class="text-xl font-bold">Member 2</h3>
+                            <p class="text-primary">Business & Partnerships Lead</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="mb-4">
+                            Owns go-to-market, customer pipeline, integrator/OEM partnerships, pricing, and pilot contracting.
+                        </p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                                <i class="fa fa-github"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                                <i class="fa fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-glass rounded-xl overflow-hidden card-hover">
+                    <div class="relative">
+                        <img src="https://picsum.photos/id/1027/400/400" alt="CFO" class="w-full h-64 object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark to-transparent p-4">
+                            <h3 class="text-xl font-bold">Member 3</h3>
+                            <p class="text-primary">Hardware, Product & Operations Lead</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="mb-4">
+                            Designs the enclosure stack and TEC + airflow system, while managing builds, deployment execution, and customer-facing deliverables.
+                        </p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                                <i class="fa fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center">
+                <h3 class="text-2xl font-bold mb-2 text-gradient">Advisory Board</h3>
+                <p class="text-gray-400 mb-8">Two advisors supporting validation and deployment.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-glass rounded-xl p-6 card-hover">
+                        <img src="https://picsum.photos/id/1025/200/200" alt="Advisor" class="w-24 h-24 rounded-full object-cover mx-auto mb-4">
+                        <h4 class="font-bold">Advisor 1</h4>
+                        <p class="text-sm text-gray-400">Battery & Reliability Advisor</p>
+                        <p class="text-sm text-gray-400">Guides safety constraints, aging drivers, and reliability validation for long-duration operation.</p>
+                    </div>
+                    <div class="bg-glass rounded-xl p-6 card-hover">
+                        <img src="https://picsum.photos/id/1062/200/200" alt="Advisor" class="w-24 h-24 rounded-full object-cover mx-auto mb-4">
+                        <h4 class="font-bold">Advisor 2</h4>
+                        <p class="text-sm text-gray-400">Thermal & Deployment Advisor</p>
+                        <p class="text-sm text-gray-400">Advises on condensation control, thermal design, and field commissioning in harsh environments.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section id="roadmap" class="section-padding relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Future Roadmap</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+                <p class="mt-6 max-w-3xl mx-auto text-lg">
+                    Our vision for the future and commitment to continuous innovation
+                </p>
+            </div>
+            
+            <div class="relative">
+                <!-- Timeline Line -->
+                <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-primary to-secondary"></div>
+                
+                <!-- Timeline Items -->
+                <div class="space-y-16">
+                    <!-- Q2 2026 -->
+                    <div class="relative">
+                        <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-primary flex items-center justify-center">
+                            <i class="fa fa-rocket text-2xl"></i>
+                        </div>
+                        <div class="md:grid md:grid-cols-2 md:gap-12 items-center">
+                            <div class="md:text-right mb-8 md:mb-0">
+                                <div class="inline-block bg-primary/20 text-primary px-4 py-1 rounded-full text-sm mb-4">Q2 2026</div>
+                                <h3 class="text-2xl font-bold mb-4">Pilot Launch</h3>
+                                <div class="bg-glass rounded-xl p-6">
+                                    <p class="mb-4">
+                                        Aegis enters pilot deployments to validate stability, condensation safety, and energy impact in real sites.
+                                    </p>
+                                    <ul class="md:text-left space-y-2">
+                                        <li class="flex items-center">
+                                            <i class="fa fa-check-circle text-green-500 mr-2"></i>
+                                            <span>Pilot deployment with baseline comparison</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <i class="fa fa-check-circle text-green-500 mr-2"></i>
+                                            <span>Performance report and control tuning</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <i class="fa fa-check-circle text-green-500 mr-2"></i>
+                                            <span>Partner onboarding for installation and service</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="md:pl-12">
+                                <img src="https://picsum.photos/id/3/600/400" alt="Product Launch" class="rounded-xl shadow-lg w-full">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Q3 2026 -->
+                    <div class="relative">
+                        <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-primary flex items-center justify-center">
+                            <i class="fa fa-code text-2xl"></i>
+                        </div>
+                        <div class="md:grid md:grid-cols-2 md:gap-12 items-center">
+                            <div class="md:order-2 mb-8 md:mb-0">
+                                <div class="inline-block bg-primary/20 text-primary px-4 py-1 rounded-full text-sm mb-4">Q3 2026</div>
+                                <h3 class="text-2xl font-bold mb-4">ADRC Control Upgrade</h3>
+                                <div class="bg-glass rounded-xl p-6">
+                                    <p class="mb-4">
+                                        Next-stage predictive ADRC tuning and dual-objective control for tighter stability under rapid weather swings.
+                                    </p>
+                                    <ul class="space-y-2">
+                                        <li class="flex items-center">
+                                            <i class="fa fa-check-circle text-green-500 mr-2"></i>
+                                            <span>Improved predictive ADRC tuning</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <i class="fa fa-check-circle text-green-500 mr-2"></i>
+                                            <span>Stronger condensation risk control (dew-point safety margin)</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <i class="fa fa-check-circle text-green-500 mr-2"></i>
+                                            <span>Lower auxiliary power through smarter actuation</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="md:order-1 md:pr-12 md:text-right">
+                                <img src="https://picsum.photos/id/160/600/400" alt="Software Ecosystem" class="rounded-xl shadow-lg w-full">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Q1 2027 -->
+                    <div class="relative">
+                        <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-primary flex items-center justify-center">
+                            <i class="fa fa-cubes text-2xl"></i>
+                        </div>
+                        <div class="md:grid md:grid-cols-2 md:gap-12 items-center">
+                            <div class="md:text-right mb-8 md:mb-0">
+                                <div class="inline-block bg-primary/20 text-primary px-4 py-1 rounded-full text-sm mb-4">Q1 2027</div>
+                                <h3 class="text-2xl font-bold mb-4">Product Line Expansion</h3>
+                                <div class="bg-glass rounded-xl p-6">
+                                    <p class="mb-4">
+                                        Aegis expands into standardized configurations for different site sizes and environmental profiles.
+                                    </p>
+                                    <ul class="md:text-left space-y-2">
+                                        <li class="flex items-center">
+                                            <i class="fa fa-check-circle text-green-500 mr-2"></i>
+                                            <span>Standard configuration for utility-scale storage sites</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <i class="fa fa-check-circle text-green-500 mr-2"></i>
+                                            <span>High-humidity / coastal configuration</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <i class="fa fa-check-circle text-green-500 mr-2"></i>
+                                            <span>Flexible sizing and insulation stack options</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="md:pl-12">
+                                <img src="https://picsum.photos/id/96/600/400" alt="Hardware Expansion" class="rounded-xl shadow-lg w-full">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Q3 2027 -->
+                    <div class="relative">
+                        <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-primary flex items-center justify-center">
+                            <i class="fa fa-globe text-2xl"></i>
+                        </div>
+                        <div class="md:grid md:grid-cols-2 md:gap-12 items-center">
+                            <div class="md:order-2 mb-8 md:mb-0">
+                                <div class="inline-block bg-primary/20 text-primary px-4 py-1 rounded-full text-sm mb-4">Q3 2027</div>
+                                <h3 class="text-2xl font-bold mb-4">Scaled Deployment</h3>
+                                <div class="bg-glass rounded-xl p-6">
+                                    <p class="mb-4">
+                                        From pilots to multi-site rollouts with repeatable commissioning and support.
+                                    </p>
+                                    <ul class="space-y-2">
+                                        <li class="flex items-center">
+                                            <i class="fa fa-check-circle text-green-500 mr-2"></i>
+                                            <span>Multi-site rollout playbook and training</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <i class="fa fa-check-circle text-green-500 mr-2"></i>
+                                            <span>Partner-led installation and service network</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <i class="fa fa-check-circle text-green-500 mr-2"></i>
+                                            <span>Spares, maintenance plans, and warranty structure</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="md:order-1 md:pr-12 md:text-right">
+                                <img src="https://picsum.photos/id/119/600/400" alt="Global Expansion" class="rounded-xl shadow-lg w-full">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2028+ -->
+                    <div class="relative">
+                        <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-accent flex items-center justify-center">
+                            <i class="fa fa-lightbulb-o text-2xl"></i>
+                        </div>
+                        <div class="text-center">
+                            <div class="inline-block bg-accent/20 text-accent px-4 py-1 rounded-full text-sm mb-4">2028+</div>
+                            <h3 class="text-2xl font-bold mb-4">Next-Generation Platform</h3>
+                            <div class="bg-glass rounded-xl p-6 max-w-3xl mx-auto">
+                                <p class="mb-4">
+                                    Long-term platform improvements focused on reliability, cost, and deployability—centered on hybrid air + liquid cooling.
+                                </p>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <div class="bg-dark/50 rounded-lg p-4">
+                                        <div class="text-2xl text-accent mb-2">
+                                            <i class="fa fa-solar-panel"></i>
+                                        </div>
+                                        <h4 class="font-bold mb-2">Hybrid Cooling Architecture</h4>
+                                        <p class="text-sm">
+                                            Air cooling for fast response and uniform airflow; liquid cooling for high heat-load and extreme conditions—coordinated by demand.
+                                        </p>
+                                    </div>
+                                    <div class="bg-dark/50 rounded-lg p-4">
+                                        <div class="text-2xl text-accent mb-2">
+                                            <i class="fa fa-atom"></i>
+                                        </div>
+                                        <h4 class="font-bold mb-2">Adaptive Mode Switching</h4>
+                                        <p class="text-sm">
+                                            Predictive ADRC schedules air/liquid modes automatically across environments and load profiles to cut energy use and improve stability.
+                                        </p>
+                                    </div>
+                                    <div class="bg-dark/50 rounded-lg p-4">
+                                        <div class="text-2xl text-accent mb-2">
+                                            <i class="fa fa-robot"></i>
+                                        </div>
+                                        <h4 class="font-bold mb-2">Modular Liquid Loop</h4>
+                                        <p class="text-sm">
+                                            Plug-in liquid modules with standardized interfaces for faster maintenance, easy expansion, and multi-site deployments.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section class="py-20 bg-gradient-to-b from-dark to-dark/95 relative">
+        <div class="absolute inset-0 tech-grid opacity-30"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-4xl mx-auto bg-glass rounded-2xl p-8 md:p-12">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Get in Touch</h2>
+                    <p class="text-lg">
+                        Interested in learning more about Aegis? Contact us for more information.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <form class="space-y-6">
+                            <div>
+                                <label for="name" class="block mb-2 font-bold">Name</label>
+                                <input type="text" id="name" class="w-full bg-dark/50 border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-primary transition-colors">
+                            </div>
+                            <div>
+                                <label for="email" class="block mb-2 font-bold">Email</label>
+                                <input type="email" id="email" class="w-full bg-dark/50 border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-primary transition-colors">
+                            </div>
+                            <div>
+                                <label for="message" class="block mb-2 font-bold">Message</label>
+                                <textarea id="message" rows="4" class="w-full bg-dark/50 border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-primary transition-colors"></textarea>
+                            </div>
+                            <button type="submit" class="bg-primary hover:bg-primary/80 text-white font-bold py-3 px-6 rounded-full transition-colors w-full md:w-auto">Send Message</button>
+                        </form>
+                    </div>
+                    <div class="text-center md:text-left">
+                        <h3 class="text-2xl font-bold mb-4">Contact Information</h3>
+                        <p class="mb-2">Email us or find us on social media for more information about Aegis.</p>
+                        <p class="mb-2"><i class="fa fa-envelope mr-2 text-primary"></i> info@aegis.com</p>
+                        <p class="mb-8"><i class="fa fa-envelope mr-2 text-primary"></i> support@aegis.com</p>
+                        <div class="space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-primary text-2xl transition-colors"><i class="fa fa-linkedin"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-primary text-2xl transition-colors"><i class="fa fa-twitter"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-primary text-2xl transition-colors"><i class="fa fa-facebook"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="py-8 text-center text-sm text-gray-400">
+        <div class="container mx-auto">
+            <div class="md:flex md:justify-between md:items-center">
+                <div>
+                    <p>&copy; 2024 Aegis. All rights reserved.</p>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <img src="https://picsum.photos/id/237/200/60" alt="Payment Methods" class="h-8">
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Menu Toggle Script -->
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+    
+    <!-- Initialize Charts -->
+    <script>
+        // Initialize Charts
+        document.addEventListener('DOMContentLoaded', function() {
+            // Performance Chart
+            const performanceCtx = document.getElementById('performanceChart').getContext('2d');
+            const performanceChart = new Chart(performanceCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['Processing Speed', 'Energy Efficiency', 'AI Capabilities', 'Storage', 'Connectivity', 'Reliability'],
+                    datasets: [
+                        {
+                            label: 'Aegis',
+                            data: [98, 92, 95, 90, 94, 96],
+                            backgroundColor: 'rgba(0, 102, 204, 0.2)',
+                            borderColor: 'rgba(0, 102, 204, 1)',
+                            pointBackgroundColor: 'rgba(0, 102, 204, 1)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgba(0, 102, 204, 1)'
+                        },
+                        {
+                            label: 'Competitor A',
+                            data: [85, 75, 80, 85, 70, 80],
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            pointBackgroundColor: 'rgba(255, 99, 132, 1)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgba(255, 99, 132, 1)'
+                        },
+                        {
+                            label: 'Competitor B',
+                            data: [80, 85, 75, 70, 85, 75],
+                            backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                            borderColor: 'rgba(255, 206, 86, 1)',
+                            pointBackgroundColor: 'rgba(255, 206, 86, 1)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgba(255, 206, 86, 1)'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            pointLabels: {
+                                color: 'rgba(255, 255, 255, 0.7)'
+                            },
+                            ticks: {
+                                backdropColor: 'transparent',
+                                color: 'rgba(255, 255, 255, 0.7)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: 'rgba(255, 255, 255, 0.7)'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Market Chart
+            const marketCtx = document.getElementById('marketChart').getContext('2d');
+            const marketChart = new Chart(marketCtx, {
+                type: 'line',
+                data: {
+                    labels: ['2023', '2024', '2025', '2026', '2027'],
+                    datasets: [
+                        {
+                            label: 'Extreme-Climate Deployments (Index)',
+                            data: [100, 125, 160, 205, 260],
+                            backgroundColor: 'rgba(0, 102, 204, 0.2)',
+                            borderColor: 'rgba(0, 102, 204, 1)',
+                            borderWidth: 2,
+                            tension: 0.4,
+                            fill: true
+                        },
+                        {
+                            label: 'Aegis Target Penetration (%)',
+                            data: [0.1, 0.3, 0.7, 1.2, 2.0],
+                            backgroundColor: 'rgba(0, 204, 255, 0.2)',
+                            borderColor: 'rgba(0, 204, 255, 1)',
+                            borderWidth: 2,
+                            tension: 0.4,
+                            fill: true,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: 'rgba(255, 255, 255, 0.7)'
+                            }
+                        },
+                        y: {
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: 'rgba(255, 255, 255, 0.7)'
+                            },
+                            title: {
+                                display: true,
+                                text: 'Deployment Index',
+                                color: 'rgba(255, 255, 255, 0.7)'
+                            }
+                        },
+                        y1: {
+                            position: 'right',
+                            grid: {
+                                drawOnChartArea: false
+                            },
+                            ticks: {
+                                color: 'rgba(0, 204, 255, 1)'
+                            },
+                            title: {
+                                display: true,
+                                text: 'Target Penetration (%)',
+                                color: 'rgba(0, 204, 255, 1)'
+                            },
+                            min: 0,
+                            max: 100
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: 'rgba(255, 255, 255, 0.7)'
+                            }
+                        }
+                    }
+                }
+            });
+        });
+        
+        // GSAP Animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Register ScrollTrigger plugin
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Hero Section Animations
+            gsap.from('.hero h1', {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                delay: 0.5
+            });
+            
+            gsap.from('.hero p', {
+                opacity: 0,
+                y: 30,
+                duration: 1,
+                delay: 0.7
+            });
+            
+            gsap.from('.hero a', {
+                opacity: 0,
+                y: 30,
+                duration: 1,
+                delay: 0.9,
+                stagger: 0.2
+            });
+        });
+    </script>
+</body>
+</html>
